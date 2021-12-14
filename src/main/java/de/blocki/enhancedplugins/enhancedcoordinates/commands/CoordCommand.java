@@ -106,7 +106,7 @@ public class CoordCommand implements CommandExecutor, TabCompleter {
 
             TextComponent message = new TextComponent(prefix + "§9Teleportieren");
             message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/coords teleport " + pSender.getName()));
-            pSender.spigot().sendMessage(message);
+            Bukkit.spigot().broadcast(message);
         }else {
             pSender.sendMessage(prefix + "Du hast keine Berechtigungen diesen Befehl auszufürhen.");
         }
