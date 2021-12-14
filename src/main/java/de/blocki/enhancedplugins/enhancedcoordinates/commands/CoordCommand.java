@@ -9,11 +9,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class CoordCommand implements CommandExecutor {
+public class CoordCommand implements CommandExecutor, TabCompleter {
 
     public static HashMap<Player, Player> playerTeleportHM = new HashMap<>();
     private final String prefix;
@@ -122,5 +124,10 @@ public class CoordCommand implements CommandExecutor {
         }else {
             pSender.sendMessage(prefix + "Du hast keine Berechtigungen diesen Befehl auszufürhen.");
         }
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return null;
     }
 }
