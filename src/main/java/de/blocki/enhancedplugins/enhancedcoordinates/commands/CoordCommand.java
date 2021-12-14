@@ -33,35 +33,42 @@ public class CoordCommand implements CommandExecutor, TabCompleter {
             data = new CoordData(pSender.getLocation());
             data.setRounded(ConfigManager.getBool("round-location"));
 
+            if(pSender.hasPermission(Permission.DEFAULT.toString()) || pSender.hasPermission(Permission.STAR.toString()) || pSender.hasPermission(Permission.PLUGIN_STAR.toString()) || pSender.isOp()){
+                if(args.length >= 1){
 
-            if(args.length >= 1){
+                    if(args[0].equalsIgnoreCase("broadcast")){
+                        broadcastCoords(pSender, args);
+                    }else if(args.length >= 2) {
 
-                if(args[0].equalsIgnoreCase("broadcast")){
-                    broadcastCoords(pSender, args);
-                }
+                        if(args[0].equalsIgnoreCase("teleport")){
+                            teleportToCoords(pSender, args);
+                        }else if(args[0].equalsIgnoreCase("send")){
+                            sendCoords(pSender, args);
+                        }else {
+                            pSender.sendMessage(prefix + "Der Befehl wurde nicht gefunden.");
+                        }
 
-                if(args.length >= 2) {
-
-                    if(args[0].equalsIgnoreCase("teleport")){
-                        teleportToCoords(pSender, args);
-                    }
-
-                    if(args[0].equalsIgnoreCase("send")){
-                        sendCoords(pSender, args);
+                    }else {
+                        pSender.sendMessage(prefix + "Der Befehl wurde nicht gefunden.");
                     }
 
                 }else {
-                    pSender.sendMessage(prefix + "Du hast keinen Spieler angegeben!");
+                    viewCoordsSelf(pSender, args);
                 }
-
             }else {
-                pSender.sendMessage(prefix + "Die Koordinated von dir sind: " + data.getX() + "/" + data.getY() + "/" + data.getZ() + ".");
+                pSender.sendMessage(prefix + "Du hast keine Berechtigungen diesen Befehl auszufürhen.");
+                return false;
             }
-
 
             return true;
         }
         return false;
+    }
+
+    private void viewCoordsSelf(Player pSender, String[] args){
+        if(pSender.hasPermission(Permission.SELF.toString()) || pSender.hasPermission(Permission.STAR.toString()) || pSender.hasPermission(Permission.PLUGIN_STAR.toString()) || pSender.isOp()){
+            pSender.sendMessage(prefix + "Die Koordinated von dir sind: " + data.getX() + "/" + data.getY() + "/" + data.getZ() + ".");
+        }
     }
 
 
@@ -106,7 +113,7 @@ public class CoordCommand implements CommandExecutor, TabCompleter {
     }
 
     private void teleportToCoords(Player pSender, String[] args){
-        if(pSender.hasPermission(Permission.BROADCAST.toString()) || pSender.hasPermission(Permission.STAR.toString()) || pSender.hasPermission(Permission.PLUGIN_STAR.toString()) || pSender.isOp()) {
+        if(pSender.hasPermission(Permission.TELEPORT.toString()) || pSender.hasPermission(Permission.STAR.toString()) || pSender.hasPermission(Permission.PLUGIN_STAR.toString()) || pSender.isOp()) {
             Player playerExact = Bukkit.getPlayerExact(args[1]);
 
             if (playerExact != null) {
