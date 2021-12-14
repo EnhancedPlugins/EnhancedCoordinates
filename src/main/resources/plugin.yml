@@ -1,0 +1,7 @@
+name: EnhancedCoordinates
+version: '${version}'
+main: de.blocki.enhancedplugins.enhancedcoordinates.EnhancedCoordinates
+api-version: 1.17
+authors: [ bloci ]
+description: Enhanced Coordinate Plugin for Minecraft
+website: ep.luca.hess.de
