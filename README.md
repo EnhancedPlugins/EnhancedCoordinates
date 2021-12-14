@@ -1,7 +1,7 @@
 
 # EnhancedCoordinates
 
-Enhanced coordinate plugin for minecraft. You can display your coordinates or send it to others or broadcast it.
+EnhancedCoordinates is a coordinate plugin so display, send or broadcast the executers location to other players on the server, it's written for Minecraft Java Version 1.8-1.17.1
 
 ![MinecraftVersion](https://img.shields.io/badge/Bungeecord%20Version-1.8%20--%201.18-green)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
