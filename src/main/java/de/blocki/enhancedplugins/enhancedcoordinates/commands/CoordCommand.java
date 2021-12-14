@@ -103,10 +103,6 @@ public class CoordCommand implements CommandExecutor, TabCompleter {
     private void broadcastCoords(Player pSender, String[] args){
         if(pSender.hasPermission(Permission.BROADCAST.toString()) || pSender.hasPermission(Permission.STAR.toString()) || pSender.hasPermission(Permission.PLUGIN_STAR.toString()) || pSender.isOp()){
             Bukkit.broadcastMessage(prefix + "Die Koordinated des Spielers " + pSender.getName() + " sind: " + data.getX() + "/" + data.getY() + "/" + data.getZ() + ".");
-
-            TextComponent message = new TextComponent(prefix + "§9Teleportieren");
-            message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/coords teleport " + pSender.getName()));
-            Bukkit.spigot().broadcast(message);
         }else {
             pSender.sendMessage(prefix + "Du hast keine Berechtigungen diesen Befehl auszufürhen.");
         }
